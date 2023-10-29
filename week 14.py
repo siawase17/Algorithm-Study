@@ -49,4 +49,35 @@ tree = list(map(int, input().split()))
 result = find_cutting_height(tree, m)
 print(result)
 
+
 # 2110번: 공유기 설치
+def find_max_distance(coord, c):
+    coord.sort()
+    left = 1
+    right = coord[-1] - coord[0]
+    result = 0
+
+    while left <= right:
+        mid = (left + right) // 2
+        count = 1
+        current_coord = coord[0]
+
+        for i in range(1, len(coord)):
+            if coord[i] - current_coord >= mid:
+                count += 1
+                current_coord = coord[i]
+
+        if count >= c:
+            result = mid
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    return result
+
+n, c = map(int, input().split())
+coordinates = [int(input()) for _ in range(n)]
+
+result = find_max_distance(coordinates, c)
+print(result)
+
