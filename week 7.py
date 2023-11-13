@@ -30,3 +30,34 @@ def solution(maps):
                 queue.append((nx, ny, distance + 1))
     
     return -1
+
+# 24479번: 깊이우선탐색1
+import sys
+input = sys.stdin.readline
+sys.setrecursionlimit(10**7)
+
+from collections import defaultdict
+
+n, m, r = map(int, input().split())
+cnt = 1
+visited = [0] * (n+1)
+graph = defaultdict(list)
+
+for _ in range(m):
+    u, v = map(int, input().split())
+    graph[u].append(v)
+    graph[v].append(u) 
+
+def dfs(start):
+    global cnt
+    visited[start] = cnt
+    graph[start].sort() 
+    
+    for i in graph[start]:
+        if visited[i] == 0:
+            cnt += 1
+            dfs(i)  
+
+dfs(r)
+for i in range(1, n+1):
+    print(visited[i])
