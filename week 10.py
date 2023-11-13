@@ -31,6 +31,19 @@ ans = postorder(numbers)
 for i in ans:
 	print(i)
 
+# 프로그래머스: 푸드파이트
+def solution(food):
+    left = []
+
+    for i in range(1, len(food)):
+        quot = food[i] // 2
+        left.extend([i] * quot)
+    
+    right = left[::-1]
+    answer = left + [0] + right
+    
+    return ''.join(map(str, answer))
+
 # 11725번: 트리의 부모찾기
 from collections import deque
 
@@ -59,16 +72,3 @@ bfs(tree,1,visited)
 
 for i in range(2, n+1):
         print(answer[i])
-
-# 프로그래머스: 푸드파이트
-def solution(food):
-    left = []
-
-    for i in range(1, len(food)):
-        quot = food[i] // 2
-        left.extend([i] * quot)
-    
-    right = left[::-1]
-    answer = left + [0] + right
-    
-    return ''.join(map(str, answer))
