@@ -16,7 +16,7 @@ result = maximum_profit(n, m, pay)
 print(result)
 
 
-# 2230번: 수고르기 (슬라이딩윈도우)
+# 2230번: 수고르기 (투포인터)
 n, m = map(int, input().split())
 nums = [int(input()) for _ in range(n)]
 
@@ -40,20 +40,22 @@ def get_minimum(n, m, nums):
 result = get_minimum(n, m, nums)
 print(result)
 
-# 3078번: 좋은친구 (슬라이딩윈도우)
-n, k = list(map(int, input().split()))
+# 3078번: 좋은친구 (큐)
+from collections import deque
 
-people = []
+n, k = map(int, input().split())
+std_idx = [0] * 21
+std_queue = deque([])
+cnt = 0
+
 for _ in range(n):
-    people.append(len(input().strip()))
+    name = input().rstrip()
+    
+    cnt += std_idx[len(name)]
+    std_idx[len(name)] += 1
 
-check = defaultdict(int)
-count = 0
+    if len(std_queue) == k:
+        std_idx[std_queue.popleft()] -= 1
+    std_idx.append(len(name))
 
-for i in range(n):
-    if i > k:
-        check[people[i-k-1]] -= 1
-    count += check[people[i]]
-    check[people[i]] += 1
-
-print(count)
+print(cnt)
