@@ -49,3 +49,14 @@ def star_pattern(n):
 
 n = int(input())
 star_pattern(n)
+
+# 1546번: 평균
+n = int(input())
+scores = list(map(int, input().split()))
+m = max(scores)
+
+for i in range(n):
+    scores[i] = scores[i]/m*100
+    
+average = sum(scores) / n
+print(average)
