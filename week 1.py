@@ -26,3 +26,26 @@ def polyomino(board):
 board = input()
 result = polyomino(board)
 print(result)
+
+# 10994번: 별찍기
+def star_line(n, i):
+    a = 4 * (n-i) + 1
+    stars = '*' * a
+    print('* ' * (i-1) + stars + ' *' * (i-1))
+    
+def space_line(n, i):
+    a = 4 * (n-i) + 1
+    spaces = ' ' * (a-4)
+    print('* ' * i + spaces + ' *' * i)
+
+def star_pattern(n):
+    for i in range(1, n):
+        star_line(n, i)
+        space_line(n, i)
+    print('* ' * (n * 2 - 1))
+    for i in range(n-1, 0, -1):
+        space_line(n, i)
+        star_line(n, i)
+
+n = int(input())
+star_pattern(n)
