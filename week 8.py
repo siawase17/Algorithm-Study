@@ -12,3 +12,25 @@ def solution(picks, minerals):
     processed = sorted([minerals[i:i+5] for i in range(0, len(minerals), 5)], key=lambda x:-sum([price[2][i] for i in x]))
     
     return sum([sum([price[picktype][i] for i in items]) for picktype, items in zip(picks, processed)])
+
+# 프로그래머스: 소수찾기 (백트래킹)
+import itertools
+def solution(numbers):
+    answer = 0
+    new=[]
+    for i in range(1,len(numbers)+1): 
+        for permutation in itertools.permutations(numbers, i): # (리스트, 순열길이)
+            new.append(int("".join(permutation)))
+            
+    for i in set(new):
+        is_prime = True
+        if i < 2:
+            continue
+        for j in range(2, i):
+            if i % j == 0:
+                is_prime = False
+                break
+        if is_prime:
+            answer += 1
+                
+    return answer
