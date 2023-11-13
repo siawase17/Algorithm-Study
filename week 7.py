@@ -61,3 +61,45 @@ def dfs(start):
 dfs(r)
 for i in range(1, n+1):
     print(visited[i])
+
+# 1260번: DFS와 BFS
+def dfs(graph, start):
+    visited = set()
+    stack = [start]
+    result = []
+
+    while stack:
+        current_node = stack.pop()
+        if current_node not in visited:
+            visited.add(current_node)
+            result.append(current_node)
+            stack.extend(sorted(graph[current_node], reverse=True)) 
+						# 내림차순 정렬
+
+    return result
+
+def bfs(graph, start):
+    visited = set()
+    queue = deque([start])
+    result = []
+
+    while queue:
+        current_node = queue.popleft()
+        if current_node not in visited:
+            visited.add(current_node)
+            result.append(current_node)
+            queue.extend(sorted(graph[current_node]))
+
+    return result
+
+
+N, M, V = map(int, input().split())
+graph = defaultdict(list)
+
+for _ in range(M):
+    a, b = map(int, input().split())
+    graph[a].append(b)
+    graph[b].append(a)
+
+print(" ".join(map(str, dfs(graph, V))))
+print(" ".join(map(str, bfs(graph, V))))
