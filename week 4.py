@@ -17,7 +17,6 @@ result = count_sum(a, m)
 print(result)
 
 # 시간초과
-# 시간 초과
 n, m = map(int, input().split())
 a = list(map(int, input().split()))
 
