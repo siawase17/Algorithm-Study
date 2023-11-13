@@ -34,3 +34,18 @@ def solution(numbers):
             answer += 1
                 
     return answer
+
+# 프로그래머스: 타겟넘버 (백트래킹)
+def solution(numbers, target):
+
+    def dfs(index, current_sum):
+        if index == len(numbers): # 모든 숫자 처리
+            return 1 if current_sum == target else 0
+
+        positive_count = dfs(index + 1, current_sum + numbers[index])
+        negative_count = dfs(index + 1, current_sum - numbers[index])
+
+        return positive_count + negative_count
+
+    answer = dfs(0, 0)
+    return answer
