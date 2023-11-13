@@ -1,7 +1,3 @@
-from PIL import Image
-from io import BytesIO
-import requests
-
 # 2003번: 수들의 합2
 def count_sum(a, m):
     count = 0
@@ -39,12 +35,6 @@ for i in range(1, n+1):
             count += 1
 
 print(count)
-
-# 설명 이미지
-img_url = 'https://file.notion.so/f/s/775a50ee-938f-4a66-be35-8261434ccae5/Untitled.png?id=3375fd65-a0f9-4409-ac3a-8990b1447640&table=block&spaceId=19f14110-c29c-496f-9b95-062969c86b08&expirationTimestamp=1700006400000&signature=uAH2fEiXgdRam83AAC_msOhUXGfyD5rjjuetwKpm44E&downloadName=Untitled.png'
-response = requests.get(img_url)
-image = Image.open(BytesIO(response.content))
-image.show()
 
 # 4949번: 균형잡힌 세상
 def is_balanced(text):
@@ -104,10 +94,3 @@ def josephus(n, k):
 n, k = map(int, input().split())
 result = josephus(n, k)
 print(result)
-
-# 설명 이미지
-url = 'https://file.notion.so/f/s/e9620f04-29b7-4561-ba38-e4fef231a641/Untitled.png?id=55d27f52-b231-4d53-a5e0-7992467fbfc4&table=block&spaceId=19f14110-c29c-496f-9b95-062969c86b08&expirationTimestamp=1700006400000&signature=-RuO2tP94GSSzVxE1nZrpohyPjH-5InLJUPyV-UAkv4&downloadName=Untitled.png'
-response = requests.get(url)
-img = Image.open(BytesIO(response.content))
-img.show()
-
