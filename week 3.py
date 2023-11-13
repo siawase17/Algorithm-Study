@@ -42,3 +42,36 @@ for i in s.keys():
     print(i)
     if cnt == k:
         break
+
+# 2566번: 최댓값
+arr = [list(map(int, input().split())) for _ in range(9)]
+x = 0
+y = 0
+max_num = -1
+
+for i in range(9):
+    for j in range(9):
+        if arr[i][j] > max_num:
+            max_num = arr[i][j]
+            x = i
+            y = j
+            
+print(max_num)
+print(x+1, y+1)
+
+# 백준 numpy 사용불가
+import numpy as np
+
+arr = [list(map(int, input().split())) for _ in range(9)]
+arr = np.array(arr)
+max_arr = []
+
+for i in arr:
+    print(i)
+    max_arr.append(max(i))
+
+max_num = max(max_arr)
+idx = np.where(arr == max_num)
+
+print(max_num)
+print(idx[0][0]+1, idx[1][0]+1)
