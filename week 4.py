@@ -46,3 +46,43 @@ response = requests.get(img_url)
 image = Image.open(BytesIO(response.content))
 image.show()
 
+# 4949번: 균형잡힌 세상
+def is_balanced(text):
+    stack = []
+    opening = '([{'
+    closing = ')]}'
+    
+    for char in text:
+        if char in opening:
+            stack.append(char)
+        elif char in closing:
+            if len(stack) == 0:
+                return False
+            opening_bracket = stack.pop()
+            if opening.index(opening_bracket) != closing.index(char):
+                return False
+    
+    return len(stack) == 0
+
+
+output = []
+while True:
+    input_str = input()
+    if input_str == '.':
+        break
+    elif is_balanced(input_str):
+        output.append("yes")
+    else:
+        output.append("no")
+
+print("\n".join(output))
+'''
+1. for char in text: 주어진 문자열 text를 한 글자씩 순회
+2. if char in opening: 현재 문자가 여는 괄호인지 확인, 여는 괄호라면 스택에 추가
+3. elif char in closing: 현재 문자가 닫는 괄호인지 확인, 닫는 괄호라면 스택의 상태를 체크
+4. if len(stack) == 0: 스택이 비어있는 경우, 닫는 괄호가 먼저 나온 것이므로 False를 반환
+5. opening_bracket = stack.pop(): 스택이 비어있지 않은 경우, 스택에서 가장 최근에 추가된 여는 괄호를 꺼내옴
+6. if opening.index(opening_bracket) != closing.index(char): 꺼내온 여는 괄호와 현재 닫는 괄호의 짝이 맞는지 확인, 짝이 맞지 않는 경우 False를 반환
+7. return len(stack) == 0: 문자열을 모두 순회한 후에도 스택에 여는 괄호가 남아있는 경우 False를 반환
+'''
+
