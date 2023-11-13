@@ -86,3 +86,28 @@ print("\n".join(output))
 7. return len(stack) == 0: 문자열을 모두 순회한 후에도 스택에 여는 괄호가 남아있는 경우 False를 반환
 '''
 
+# 1158번: 요세푸스 문제
+def josephus(n, k):
+    q = list(range(1, n+1))
+    result = []
+    j = 0
+
+    while q:
+        if len(q) == 1:  # q의 길이가 1인 경우
+            result.append(str(q.pop()))
+        else:
+            j = (j + k - 1) % len(q)
+            result.append(str(q.pop(j)))
+
+    return f'<{", ".join(result)}>'
+
+n, k = map(int, input().split())
+result = josephus(n, k)
+print(result)
+
+# 설명 이미지
+url = 'https://file.notion.so/f/s/e9620f04-29b7-4561-ba38-e4fef231a641/Untitled.png?id=55d27f52-b231-4d53-a5e0-7992467fbfc4&table=block&spaceId=19f14110-c29c-496f-9b95-062969c86b08&expirationTimestamp=1700006400000&signature=-RuO2tP94GSSzVxE1nZrpohyPjH-5InLJUPyV-UAkv4&downloadName=Untitled.png'
+response = requests.get(url)
+img = Image.open(BytesIO(response.content))
+img.show()
+
