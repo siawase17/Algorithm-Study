@@ -30,3 +30,32 @@ def postorder(arr):
 ans = postorder(numbers)
 for i in ans:
 	print(i)
+
+# 11725번: 트리의 부모찾기
+from collections import deque
+
+n = int(input())
+visited = [False] * (n+1)
+answer = [0] * (n+1)
+tree = [[] for _ in range(n+1)]
+for i in range(n-1):
+    a, b = map(int, input().split())
+    tree[b].append(a)
+    tree[a].append(b)
+
+
+def bfs(tree, node, visited):
+    que = deque([node])
+    visited[node] = True
+    while que:
+        x = que.popleft()
+        for i in tree[x]:
+            if not visited[i]:
+                answer[i] = x
+                que.append(i)
+                visited[i] = True
+
+bfs(tree,1,visited)
+
+for i in range(2, n+1):
+        print(answer[i])
