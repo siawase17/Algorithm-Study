@@ -56,3 +56,20 @@ def dijkstra(N, D, C):
 for _ in range(t):
     n, d, c = map(int, input().split())
     print(dijkstra(n, d, c))
+
+# 프로그래머스: 모음사전 (DFS)
+def dfs(word, words, vowels):
+    words.append(word)
+    
+    if len(word) == 5:
+        return
+
+    for vowel in vowels:
+        dfs(word + vowel, words, vowels)
+
+def solution(word):
+    vowels = 'AEIOU'
+    words = []
+    dfs('', words, vowels)
+    
+    return words.index(word)
