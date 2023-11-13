@@ -40,7 +40,7 @@ def get_minimum(n, m, nums):
 result = get_minimum(n, m, nums)
 print(result)
 
-# 3078번: 좋은친구
+# 3078번: 좋은친구 (슬라이딩윈도우)
 n, k = list(map(int, input().split()))
 
 people = []
