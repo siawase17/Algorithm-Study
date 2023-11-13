@@ -14,3 +14,31 @@ binaryTree(0, 0, len(arr) - 1)
 
 for level_list in tree:
     print(*level_list)
+
+# 1991번: 트리순회
+n = int(input())
+left, right = {}, {}
+for i in range(n):
+    x, l, r = tuple(input().split())
+    left[x] = l
+    right[x] = r
+
+def preorder(x):
+    if x == '.':
+        return ''
+    return x + preorder(left[x]) + preorder(right[x])
+
+
+def inorder(x):
+    if x == '.':
+        return ''
+    return inorder(left[x]) +  x + inorder(right[x])
+
+def postorder(x):
+    if x == '.':
+        return ''
+    return postorder(left[x]) + postorder(right[x]) + x
+
+print(preorder('A'))
+print(inorder('A'))
+print(postorder('A'))
